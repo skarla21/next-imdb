@@ -1,10 +1,10 @@
 import Results from "@/components/Results";
 
-export default async function TopPages({
-  params,
-}: {
-  params: { category: string };
-}) {
+type Props = {
+  params: Promise<{ category: string }>;
+};
+
+export default async function TopPages({ params }: Props) {
   const { category } = await params;
   let api_category: string;
   switch (category) {
