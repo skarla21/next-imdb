@@ -1,11 +1,12 @@
 import Results from "@/components/Results";
 
-type Props = {
+export default async function TopPages({
+  params,
+}: {
   params: Promise<{ category: string }>;
-};
-
-export default async function TopPages({ params }: Props) {
-  const { category } = await params;
+}) {
+  const resolvedParams = await params;
+  const { category } = resolvedParams;
   let api_category: string;
   switch (category) {
     case "rated_movies":
