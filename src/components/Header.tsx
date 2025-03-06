@@ -7,7 +7,7 @@ export default function Header() {
     <div className="flex items-center justify-between p-3 max-w-6xl mx-auto gap-4 flex-wrap">
       {/* Left Section - Logo */}
       <Link href={"/"} className="flex gap-1 items-center order-first">
-        <span className="text-2xl font-bold bg-amber-500 py-1 px-2 rounded-lg">
+        <span className="text-2xl font-bold bg-amber-500 hover:bg-amber-600 transition-colors duration-200 py-1 px-2 rounded-lg">
           IMDb
         </span>
         <span className="text-xl">Clone</span>
