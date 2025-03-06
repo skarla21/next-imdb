@@ -1,13 +1,10 @@
 import Results from "@/components/Results";
 
-interface PageProps {
-  params: {
-    category: string;
-  };
-  // searchParams?: { [key: string]: string | string[] | undefined };
-}
-
-export default async function TopPages({ params }: PageProps) {
+export default async function TopPages({
+  params,
+}: {
+  params: { category: string };
+}) {
   const { category } = await params;
   let api_category: string;
   switch (category) {
