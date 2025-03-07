@@ -15,5 +15,9 @@ export default function AddToFav({
   releaseDate,
   voteCount,
 }: PageProps) {
-  return <div>AddToFav</div>;
+  return (
+    <div>
+      AddToFav: {movieId} {title} {overview} {image} {releaseDate} {voteCount}
+    </div>
+  );
 }
