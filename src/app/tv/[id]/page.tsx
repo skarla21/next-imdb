@@ -8,13 +8,13 @@ export default async function MoviePage({
 }: {
   params: Promise<{ id: number }>;
 }) {
-  const { id: movieId } = await params;
+  const { id: tvId } = await params;
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.API_KEY}`
+    `https://api.themoviedb.org/3/tv/${tvId}?api_key=${process.env.API_KEY}`
   );
-  const movie: Result = await res.json();
+  const tv: Result = await res.json();
 
-  const imagePath = movie.backdrop_path || movie.poster_path;
+  const imagePath = tv.backdrop_path || tv.poster_path;
   const imageUrl = imagePath
     ? `https://image.tmdb.org/t/p/original/${imagePath}`
     : "/placeholder.jpg";
@@ -49,30 +49,28 @@ export default async function MoviePage({
           />
         </div>
         <div className="p-2">
-          <h2 className="text-lg mb-3 font-bold">
-            {movie.title || movie.name}
-          </h2>
-          <p className="text-lg mb-3">{movie.overview}</p>
+          <h2 className="text-lg mb-3 font-bold">{tv.title || tv.name}</h2>
+          <p className="text-lg mb-3">{tv.overview}</p>
           <p className="mb-3">
             <span className="font-semibold mr-1">Type:</span>
-            Movie
+            TV Show
           </p>
           <p className="mb-3">
             <span className="font-semibold mr-1">Date Released:</span>
-            {movie.release_date || movie.first_air_date}
+            {tv.release_date || tv.first_air_date}
           </p>
           <p className="mb-3">
             <span className="font-semibold mr-1">Rating:</span>
-            {movie.vote_count}
+            {tv.vote_count}
           </p>
           <AddToFav
-            id={movieId}
-            title={movie.title || movie.name}
-            media_type="movie"
-            image={movie.backdrop_path || movie.poster_path}
-            overview={movie.overview}
-            releaseDate={movie.release_date || movie.first_air_date}
-            voteCount={movie.vote_count}
+            id={tvId}
+            title={tv.title || tv.name}
+            media_type="tv"
+            image={tv.backdrop_path || tv.poster_path}
+            overview={tv.overview}
+            releaseDate={tv.release_date || tv.first_air_date}
+            voteCount={tv.vote_count}
           />
         </div>
       </div>

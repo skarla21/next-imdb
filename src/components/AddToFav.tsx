@@ -1,23 +1,18 @@
-interface PageProps {
-  movieId: number;
-  title: string | undefined;
-  image: string | undefined;
-  overview: string;
-  releaseDate: string | undefined;
-  voteCount: number | undefined;
-}
+import { AddToFavProps } from "@/lib/types/props";
 
 export default function AddToFav({
-  movieId,
+  id,
   title,
+  media_type,
   image,
   overview,
   releaseDate,
   voteCount,
-}: PageProps) {
+}: AddToFavProps) {
   return (
     <div>
-      AddToFav: {movieId} {title} {overview} {image} {releaseDate} {voteCount}
+      AddToFav: {id} {title} {media_type} {overview} {image} {releaseDate}{" "}
+      {voteCount}
     </div>
   );
 }

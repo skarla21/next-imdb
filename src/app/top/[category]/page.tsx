@@ -1,4 +1,5 @@
 import Results from "@/components/Results";
+import { Result } from "@/lib/types/data";
 
 export default async function TopPages({
   params,
@@ -28,12 +29,16 @@ export default async function TopPages({
   const res = await fetch(
     `https://api.themoviedb.org/3${api_category}?api_key=${process.env.API_KEY}&language=en-US&page=1`
   );
-  const data = await res.json();
-
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-  const results = data.results;
+
+  const data = await res.json();
+  let results = data.results;
+  results = results.map((result: Result) => ({
+    ...result,
+    media_type: category.includes("movies") ? "movie" : "tv", // forcefully inject 'media_type' in each result in case it doesn't exist
+  }));
 
   return (
     <div>

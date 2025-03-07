@@ -5,6 +5,7 @@ export interface Result {
   genre_ids?: number[];
   id: number;
   media_type?: string;
+  origin_country?: string[];
   original_language?: string;
   original_title?: string;
   overview: string;
@@ -16,12 +17,4 @@ export interface Result {
   video?: boolean;
   vote_average?: number;
   vote_count?: number;
-}
-
-export interface ResultsProps {
-  results: Result[];
-}
-
-export interface CardProps {
-  result: Result;
 }

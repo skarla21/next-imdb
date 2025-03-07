@@ -1,5 +1,5 @@
 import Card from "./Card";
-import type { ResultsProps } from "@/lib/types/data";
+import type { ResultsProps } from "@/lib/types/props";
 
 export default function Results({ results }: ResultsProps) {
   return (
