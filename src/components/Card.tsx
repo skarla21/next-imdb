@@ -10,14 +10,15 @@ export default function Card({ result }: CardProps) {
     : "/placeholder.jpg";
 
   return (
-    <div className="group cursor-pointer sm:hover:shadow-slate-400 sm:shadow-md rounded-lg sm:border sm:border-slate-400 sm:m-2 transition-shadow duration-200">
+    <div className="group cursor-pointer w-full max-w-[400px] sm:hover:shadow-slate-400 sm:shadow-md rounded-lg sm:border sm:border-slate-400 transition-shadow duration-200 mx-2">
       <Link href={`/${result.media_type}/${result.id}`}>
-        <div className="w-full h-24 sm:h-36 relative">
+        <div className="w-full aspect-[16/9] relative">
           <Image
             src={imageUrl}
             alt={"/placeholder.jpg"}
-            fill
-            sizes="(max-width: 640px) 100vw, 50vw"
+            width={400} //add explicit dimensions
+            height={225}
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             placeholder="blur"
             blurDataURL="/placeholder.jpg"
             className="sm:rounded-t-lg group-hover:opacity-75 transition-opacity duration-300 object-cover"

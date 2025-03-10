@@ -36,44 +36,78 @@ export default async function MoviePage({
 
   return (
     <div className="w-full">
-      <div className="p-4 md:pt-8 flex flex-col md:flex-row content-center max-w-6xl mx-auto md:space-x-6">
-        <div className="w-full aspect-video relative">
-          <Image
-            src={imageUrl}
-            alt={"/placeholder.jpg"}
-            fill
-            sizes="(max-width: 640px) 100vw, 50vw"
-            placeholder="blur"
-            blurDataURL="/placeholder.jpg"
-            className="sm:rounded-t-lg object-contain"
-          />
+      <div className="p-4 md:p-8 max-w-6xl mx-auto space-y-6">
+        {/* Image Container */}
+        <div className="flex justify-center">
+          <div className="w-full max-w-3xl aspect-video relative group">
+            <Image
+              src={imageUrl}
+              alt="placeholder.jpg"
+              fill
+              sizes="(max-width: 1024px) 100vw, 1280px"
+              placeholder="blur"
+              blurDataURL="/placeholder.jpg"
+              className="rounded-lg object-cover shadow-xl ring-1 ring-black/5 transition-all duration-300 group-hover:shadow-2xl"
+              quality={100}
+              priority
+            />
+          </div>
         </div>
-        <div className="p-2">
-          <h2 className="text-lg mb-3 font-bold">
+
+        {/* Details Container */}
+        <div className="px-4 md:px-6 py-4 space-y-6 max-w-3xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-bold text-center md:text-left">
             {movie.title || movie.name}
-          </h2>
-          <p className="text-lg mb-3">{movie.overview}</p>
-          <p className="mb-3">
-            <span className="font-semibold mr-1">Type:</span>
-            Movie
-          </p>
-          <p className="mb-3">
-            <span className="font-semibold mr-1">Date Released:</span>
-            {movie.release_date || movie.first_air_date}
-          </p>
-          <p className="mb-3">
-            <span className="font-semibold mr-1">Rating:</span>
-            {movie.vote_count}
-          </p>
-          <AddToFav
-            id={movieId}
-            title={movie.title || movie.name}
-            media_type="movie"
-            image={movie.backdrop_path || movie.poster_path}
-            overview={movie.overview}
-            releaseDate={movie.release_date || movie.first_air_date}
-            voteCount={movie.vote_count}
-          />
+          </h1>
+
+          <div className="space-y-4">
+            <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+              {movie.overview}
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-amber-50 dark:bg-gray-700 rounded-lg">
+              <div className="space-y-2">
+                <p className="font-semibold text-amber-600 dark:text-amber-400">
+                  Type:{" "}
+                  <span className="text-gray-700 dark:text-gray-200">
+                    Movie
+                  </span>
+                </p>
+                <p className="font-semibold text-amber-600 dark:text-amber-400">
+                  Released:{" "}
+                  <span className="text-gray-700 dark:text-gray-200">
+                    {movie.release_date || movie.first_air_date}
+                  </span>
+                </p>
+              </div>
+              <div className="space-y-2">
+                <p className="font-semibold text-amber-600 dark:text-amber-400">
+                  Rating:{" "}
+                  <span className="text-gray-700 dark:text-gray-200">
+                    {movie.vote_count} votes
+                  </span>
+                </p>
+                <p className="font-semibold text-amber-600 dark:text-amber-400">
+                  Score:{" "}
+                  <span className="text-gray-700 dark:text-gray-200">
+                    {movie.vote_average?.toFixed(1)}
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <div className="flex justify-center md:justify-start">
+              <AddToFav
+                id={movieId}
+                title={movie.title || movie.name}
+                media_type="movie"
+                image={movie.backdrop_path || movie.poster_path}
+                overview={movie.overview}
+                releaseDate={movie.release_date || movie.first_air_date}
+                voteCount={movie.vote_count}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
