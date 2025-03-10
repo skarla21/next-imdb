@@ -7,12 +7,15 @@ import { clerkClient, currentUser } from "@clerk/nextjs/server";
 export const PUT = async (req: NextRequest) => {
   const user = await currentUser();
   const client = await clerkClient();
+
   try {
     await connect();
     const data: Favorite = await req.json();
+
     if (!user) {
-      return { status: 401, body: "Unauthorized" };
+      return new Response("Unauthorized", { status: 401 });
     }
+
     const existingUser = await User.findById(user.publicMetadata.userMongoId);
 
     if (
@@ -25,12 +28,12 @@ export const PUT = async (req: NextRequest) => {
         { $pull: { favs: { id: data.id } } },
         { new: true }
       );
+
       const updatedFavs = updatedUser.favs.map((fav: { id: number }) => fav.id);
       await client.users.updateUserMetadata(user.id, {
-        publicMetadata: {
-          favs: updatedFavs,
-        },
+        publicMetadata: { favs: updatedFavs },
       });
+
       return new Response(JSON.stringify(updatedUser), { status: 200 });
     } else {
       const updatedUser = await User.findByIdAndUpdate(
@@ -50,16 +53,16 @@ export const PUT = async (req: NextRequest) => {
         },
         { new: true }
       );
+
       const updatedFavs = updatedUser.favs.map((fav: { id: number }) => fav.id);
       await client.users.updateUserMetadata(user.id, {
-        publicMetadata: {
-          favs: updatedFavs,
-        },
+        publicMetadata: { favs: updatedFavs },
       });
+
       return new Response(JSON.stringify(updatedUser), { status: 200 });
     }
   } catch (error) {
-    console.log("Error adding favs to the user: ", error);
-    return new Response("Error adding favs to the user", { status: 500 });
+    console.error("Error adding favs to the user: ", error);
+    return new Response("Internal Server Error", { status: 500 });
   }
 };

@@ -1,23 +1,33 @@
+import { NextResponse } from "next/server";
 import User from "@/lib/models/user.model";
 import { connect } from "@/lib/mongodb/mongoose";
 import { currentUser } from "@clerk/nextjs/server";
 
 export const GET = async () => {
-  const user = await currentUser();
   try {
     await connect();
+    const user = await currentUser();
+
     if (!user) {
-      return new Response("Unauthorized", { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    const existingUser = await User.findById(user.publicMetadata.userMongoId);
+
+    const userMongoId = user.publicMetadata?.userMongoId;
+    if (!userMongoId || typeof userMongoId !== "string") {
+      return NextResponse.json({ error: "Invalid user data" }, { status: 400 });
+    }
+
+    const existingUser = await User.findById(userMongoId);
     if (!existingUser) {
-      return new Response("User not found", { status: 404 });
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
-    return new Response(JSON.stringify({ favs: existingUser.favs }), {
-      status: 200,
-    });
+
+    return NextResponse.json({ favs: existingUser.favs }, { status: 200 });
   } catch (error) {
-    console.log("Error fetching user favorites:", error);
-    return new Response("Error fetching user favorites", { status: 500 });
+    console.error("Error fetching user favorites:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 };
