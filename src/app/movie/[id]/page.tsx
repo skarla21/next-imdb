@@ -100,11 +100,11 @@ export default async function MoviePage({
               <AddToFav
                 id={movieId}
                 title={movie.title || movie.name}
-                media_type="movie"
+                mediaType="movie"
                 image={movie.backdrop_path || movie.poster_path}
                 overview={movie.overview}
                 releaseDate={movie.release_date || movie.first_air_date}
-                voteCount={movie.vote_count}
+                voteAverage={movie.vote_average}
               />
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import DarkModeSwitch from "./DarkModeSwitch";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import SearchBox from "./SearchBox";
@@ -8,6 +9,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="relative">
@@ -55,11 +57,33 @@ export default function Header() {
         {/* Right Section - Desktop Navigation & Auth */}
         <div className="hidden md:flex items-center gap-8 order-2 md:order-none">
           {/* Desktop Navigation */}
-          <div className="flex gap-4">
-            <Link href={"/"} className="hover:text-amber-500">
+          <div className="flex gap-4 lg:mr-6 2xl:ml-6 2xl:mr-12">
+            <Link
+              href={"/"}
+              className={`${
+                pathname === "/" ? "text-amber-400" : "hover:text-amber-500"
+              }`}
+            >
               Home
             </Link>
-            <Link href={"/about"} className="hover:text-amber-500">
+            <Link
+              href={"/favorites"}
+              className={`${
+                pathname === "/favorites"
+                  ? "text-amber-400"
+                  : "hover:text-amber-500"
+              }`}
+            >
+              Favorites
+            </Link>
+            <Link
+              href={"/about"}
+              className={`${
+                pathname === "/about"
+                  ? "text-amber-400"
+                  : "hover:text-amber-500"
+              }`}
+            >
               About
             </Link>
           </div>
@@ -81,11 +105,35 @@ export default function Header() {
         </div>
 
         {/* Mobile Navigation (if needed) for Home/About links */}
-        <div className="flex md:hidden gap-4 order-4 w-full justify-center">
-          <Link href={"/"} className="hover:text-amber-500">
+        <div className="flex md:hidden gap-2 order-4 w-full justify-center p-2 bg-amber-100 dark:bg-gray-800 rounded-lg mx-4 mb-2">
+          <Link
+            href="/"
+            className={`px-4 py-2 rounded-md transition-colors duration-200 ${
+              pathname === "/"
+                ? "bg-amber-400 dark:bg-gray-600 text-white font-semibold"
+                : "hover:bg-amber-200 dark:hover:bg-gray-700"
+            }`}
+          >
             Home
           </Link>
-          <Link href={"/about"} className="hover:text-amber-500">
+          <Link
+            href="/favorites"
+            className={`px-4 py-2 rounded-md transition-colors duration-200 ${
+              pathname === "/favorites"
+                ? "bg-amber-400 dark:bg-gray-600 text-white font-semibold"
+                : "hover:bg-amber-200 dark:hover:bg-gray-700"
+            }`}
+          >
+            Favorites
+          </Link>
+          <Link
+            href="/about"
+            className={`px-4 py-2 rounded-md transition-colors duration-200 ${
+              pathname === "/about"
+                ? "bg-amber-400 dark:bg-gray-600 text-white font-semibold"
+                : "hover:bg-amber-200 dark:hover:bg-gray-700"
+            }`}
+          >
             About
           </Link>
         </div>

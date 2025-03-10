@@ -1,23 +1,29 @@
 import mongoose from "mongoose";
+import { Favorite, UserType } from "../types/user";
 
-const FavSchema = new mongoose.Schema({
-  movieId: {
-    type: String,
+const FavSchema = new mongoose.Schema<Favorite>({
+  id: {
+    type: Number,
     required: true,
   },
   title: {
     type: String,
     required: true,
   },
-  description: {
+  mediaType: {
+    type: String,
+    enum: ["movie", "tv"],
+    required: true,
+  },
+  overview: {
     type: String,
     required: true,
   },
-  dateReleased: {
-    type: Date,
+  releaseDate: {
+    type: String,
     required: true,
   },
-  rating: {
+  voteAverage: {
     type: Number,
     required: true,
   },
@@ -27,7 +33,7 @@ const FavSchema = new mongoose.Schema({
   },
 });
 
-const UserSchema = new mongoose.Schema(
+const UserSchema = new mongoose.Schema<UserType>(
   {
     clerkId: {
       type: String,

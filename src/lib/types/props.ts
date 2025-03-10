@@ -1,4 +1,5 @@
 import { Result } from "./data";
+import { Favorite } from "./user";
 
 export interface ResultsProps {
   results: Result[];
@@ -8,12 +9,4 @@ export interface CardProps {
   result: Result;
 }
 
-export interface AddToFavProps {
-  id: number;
-  title: string | undefined;
-  media_type: "movie" | "tv";
-  image: string | undefined;
-  overview: string;
-  releaseDate: string | undefined;
-  voteCount: number | undefined;
-}
+export type AddToFavProps = Favorite;

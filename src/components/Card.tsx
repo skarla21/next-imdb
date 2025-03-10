@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FiThumbsUp } from "react-icons/fi";
+import { AiFillStar } from "react-icons/ai";
 import type { CardProps } from "@/lib/types/props";
 
 export default function Card({ result }: CardProps) {
@@ -8,6 +8,15 @@ export default function Card({ result }: CardProps) {
   const imageUrl = imagePath
     ? `https://image.tmdb.org/t/p/original/${imagePath}`
     : "/placeholder.jpg";
+
+  const dateToFormat = result.release_date || result.first_air_date;
+  const formattedDate = dateToFormat
+    ? new Date(dateToFormat).toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })
+    : "N/A";
 
   return (
     <div className="group cursor-pointer w-full max-w-[400px] sm:hover:shadow-slate-400 sm:shadow-md rounded-lg sm:border sm:border-slate-400 transition-shadow duration-200 mx-2">
@@ -30,9 +39,9 @@ export default function Card({ result }: CardProps) {
           </h2>
           <p className="line-clamp-3 text-sm mb-2">{result.overview}</p>
           <p className="flex items-center text-xs">
-            {result.release_date || result.first_air_date}
-            <FiThumbsUp className="h-5 mr-1 ml-3" />
-            {result.vote_count}
+            {formattedDate}
+            <AiFillStar className="h-5 mr-1 ml-3 text-yellow-500" />
+            {result.vote_average?.toFixed(1)}
           </p>
         </div>
       </Link>
