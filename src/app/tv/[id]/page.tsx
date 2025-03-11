@@ -39,15 +39,16 @@ export default async function MoviePage({
       <div className="p-4 md:p-8 max-w-6xl mx-auto space-y-6">
         {/* Image Container */}
         <div className="flex justify-center">
-          <div className="w-full max-w-3xl aspect-video relative group">
+          <div className="w-full max-w-3xl aspect-video relative group flex justify-center">
             <Image
               src={imageUrl}
               alt="placeholder.jpg"
               fill
-              sizes="(max-width: 640px) 100vw, 80vw"
-              placeholder="blur"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               blurDataURL="/placeholder.jpg"
-              className="rounded-lg object-cover shadow-xl ring-1 ring-black/5 transition-all duration-300 group-hover:shadow-2xl"
+              className="rounded-lg object-contain"
+              quality={100}
+              priority
             />
           </div>
         </div>

@@ -25,8 +25,7 @@ export default function Card({ result }: CardProps) {
           <Image
             src={imageUrl}
             alt={"/placeholder.jpg"}
-            width={400} //add explicit dimensions
-            height={225}
+            fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             placeholder="blur"
             blurDataURL="/placeholder.jpg"
