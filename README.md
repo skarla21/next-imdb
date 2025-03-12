@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# [IMDB Clone](https://next-imdb-two.vercel.app/)
 
-## Getting Started
+Welcome to **Next IMDb Clone** – a sleek, modern movie and TV database application built with cutting-edge technologies.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Next IMDb Clone** is an IMDb-inspired project developed with **Next.js 15**, **TypeScript**, and **Tailwind CSS**. The application features dynamic content loading, infinite scroll, and seamless authentication. It leverages **Clerk** for user authentication and integrates with **MongoDB** via **Mongoose** for persistent data storage. In addition, robust **webhooks** connect Clerk and MongoDB, ensuring real-time data synchronization.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This repository follows the modern Next.js App Router pattern with the `app/api` directory set up for backend/server actions, providing a powerful and flexible API layer.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Dynamic Content Loading**  
+  Smooth infinite scrolling and paginated data fetching from TMDB APIs.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **User Authentication**  
+  Secure sign-up, sign-in, and user session management using [Clerk](https://clerk.dev).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Robust Data Storage**  
+  MongoDB as the primary database with Mongoose ODM for schema-based data modeling.
 
-## Deploy on Vercel
+- **Webhook Integrations**  
+  Real-time connections between Clerk and MongoDB ensuring timely updates across the platform.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Server Actions**  
+  Utilize Next.js server actions via the `app/api` directory to handle backend logic seamlessly.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Modern UI**  
+  Responsive design with Tailwind CSS that adapts beautifully to any screen size.
+
+---
+
+## Tech Stack
+
+- **Next.js 15**  
+  The framework powering the application with its powerful routing and server-rendering capabilities.
+
+- **TypeScript**  
+  Ensuring type safety and better code maintainability throughout the project.
+
+- **Tailwind CSS**  
+  Rapid UI development with a utility-first CSS framework for a modern, responsive design.
+
+- **Clerk**  
+  Secure authentication and user management integrated with our Next.js app.
+
+- **MongoDB & Mongoose**  
+  NoSQL database paired with Mongoose for structured, schema-driven data management.
+
+- **Webhooks**  
+  Custom integrations connecting Clerk and MongoDB to streamline data synchronization.
+
+---
+
+Enjoy exploring movies and TV shows with **Next IMDb Clone**! If you have any questions or feedback, feel free to reach out.
+
+Happy coding!

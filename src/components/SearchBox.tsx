@@ -57,7 +57,7 @@ export default function SearchBox() {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside); //remove residual event listener when unmounting
   }, []);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
