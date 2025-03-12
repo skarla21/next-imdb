@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import { AddToFavProps } from "@/lib/types/props";
+import type { Favorite } from "@/lib/types/user";
 
 export default function AddToFav({
   id,
@@ -12,7 +12,7 @@ export default function AddToFav({
   overview,
   releaseDate,
   voteAverage,
-}: AddToFavProps) {
+}: Favorite) {
   const [isFav, setIsFav] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { isSignedIn, user, isLoaded } = useUser();

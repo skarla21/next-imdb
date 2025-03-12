@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { AiFillStar } from "react-icons/ai";
-import type { CardProps } from "@/lib/types/props";
+import type { Result } from "@/lib/types/data";
 
-export default function Card({ result }: CardProps) {
+export default function Card({ result }: { result: Result }) {
   const imagePath = result.backdrop_path || result.poster_path;
   const imageUrl = imagePath
     ? `https://image.tmdb.org/t/p/original/${imagePath}`
@@ -24,7 +24,7 @@ export default function Card({ result }: CardProps) {
         <div className="w-full aspect-[16/9] relative">
           <Image
             src={imageUrl}
-            alt={"/placeholder.jpg"}
+            alt={result.title || "Movie image"}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             placeholder="blur"

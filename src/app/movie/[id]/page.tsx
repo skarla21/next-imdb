@@ -42,12 +42,12 @@ export default async function MoviePage({
           <div className="w-full max-w-3xl aspect-video relative group flex justify-center">
             <Image
               src={imageUrl}
-              alt="placeholder.jpg"
+              alt={movie.title || "Movie image"}
               fill
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1536px) 80vw, 70vw"
               blurDataURL="/placeholder.jpg"
               className="rounded-lg object-contain"
-              quality={100}
+              quality={90}
               priority
             />
           </div>
