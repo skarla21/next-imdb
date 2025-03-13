@@ -54,7 +54,7 @@ export default function Favorites() {
             <EmptyPage
               primaryText={"No Favorites Yet"}
               secondaryText={
-                "It looks like you haven&apos;t added any movies or shows to your favorites yet. Start exploring and add some titles you love!"
+                "It looks like you haven't added any movies or shows to your favorites yet. Start exploring and add some titles you love!"
               }
             />
           ) : (

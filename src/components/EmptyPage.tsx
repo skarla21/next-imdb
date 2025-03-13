@@ -11,7 +11,7 @@ export default function EmptyPage({
   const router = useRouter();
 
   return (
-    <div className="flex flex-col items-center justify-center h-[calc(100vh-160px)] text-center">
+    <div className="flex flex-col items-center mt-32 h-[calc(100vh-160px)] text-center">
       <div className="max-w-md space-y-4">
         <div className="text-6xl">🎬</div>
         <h1 className="text-2xl font-bold">{primaryText}</h1>
